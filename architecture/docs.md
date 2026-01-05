@@ -16,3 +16,7 @@ Requests --> blocking requests---> blocked due to their nature and not execute d
 
 Thread pools :--> pools of multiple threads for executing the blocking/synchronus operations 
 
+default thread pool size :- 4
+max size of the thread pools can be :- max cpu core == thread pools 
+we can see the total threads using the os module in nodejs 
+os.cpu().lenght //cpu thread size
