@@ -37,8 +37,3 @@ This tutorial covers **all essential Node.js topics**, including:
 - **JavaScript (ES6+)**
 - **NPM**
 - **MongoDB / SQL (if applicable)**
-
----
-
-## 📂 Project Structure
-
