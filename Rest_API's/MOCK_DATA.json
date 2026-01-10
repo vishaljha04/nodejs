@@ -1,0 +1,74 @@
+[
+  {
+    "id": 1,
+    "first_name": "Alice",
+    "last_name": "Johnson",
+    "email": "alice.johnson@example.com",
+    "gender": "Female",
+    "job_title": "Software Engineer"
+  },
+  {
+    "id": 2,
+    "first_name": "Michael",
+    "last_name": "Brown",
+    "email": "michael.brown@example.com",
+    "gender": "Male",
+    "job_title": "Product Manager"
+  },
+  {
+    "id": 3,
+    "first_name": "Sophia",
+    "last_name": "Martinez",
+    "email": "sophia.martinez@example.com",
+    "gender": "Female",
+    "job_title": "UX Designer"
+  },
+  {
+    "id": 4,
+    "first_name": "Daniel",
+    "last_name": "Nguyen",
+    "email": "daniel.nguyen@example.com",
+    "gender": "Male",
+    "job_title": "Data Analyst"
+  },
+  {
+    "id": 6,
+    "first_name": "James",
+    "last_name": "O'Connor",
+    "email": "james.oconnor@example.com",
+    "gender": "Male",
+    "job_title": "DevOps Engineer"
+  },
+  {
+    "id": 7,
+    "first_name": "Olivia",
+    "last_name": "Khan",
+    "email": "olivia.khan@example.com",
+    "gender": "Female",
+    "job_title": "HR Business Partner"
+  },
+  {
+    "id": 8,
+    "first_name": "Ethan",
+    "last_name": "Lee",
+    "email": "ethan.lee@example.com",
+    "gender": "Male",
+    "job_title": "QA Engineer"
+  },
+  {
+    "id": 9,
+    "first_name": "Ava",
+    "last_name": "Peterson",
+    "email": "ava.peterson@example.com",
+    "gender": "Female",
+    "job_title": "Technical Writer"
+  },
+  {
+    "id": 10,
+    "first_name": "Noah",
+    "last_name": "Smith",
+    "email": "noah.smith@example.com",
+    "gender": "Male",
+    "job_title": "IT Support Specialist"
+  }
+]

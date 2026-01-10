@@ -1,0 +1,11 @@
+REST API'S
+
+GET/user  : all users
+GET/user/123 : get user with id:123
+
+POST/user : create new user 
+
+DELETE/user1:DELETE the user with id:1
+
+Dynamic path 
+/:id
