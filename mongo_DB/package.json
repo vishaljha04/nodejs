@@ -4,13 +4,14 @@
   "description": "this is mongoDB",
   "license": "ISC",
   "author": "vishal jha",
-  "type": "commonjs",
+  "type": "module",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon server.js"
   },
   "dependencies": {
+    "dotenv": "^17.2.3",
     "express": "^5.2.1",
     "mongoose": "^9.1.2",
     "nodemon": "^3.1.11"

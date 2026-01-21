@@ -1,0 +1,10 @@
+MogoDB is a non SQL document based powerful database 
+strong support of aggregation pipelines
+it works on BSON format
+collection>document>data(BSON format)
+
+
+how mongo define and how it works
+
+Schem--> structure -->Model
+using Model we do CURD operations 

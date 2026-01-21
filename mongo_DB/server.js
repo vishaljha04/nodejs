@@ -1,7 +1,9 @@
-const express = require("express");
-const users = require('./MOCK_DATA.json');
-const mongoose = require('mongoose');
-
+import express from "express";
+// import { User } from './models/User.model';
+// import users from './MOCK_DATA.json'
+import mongoose from "mongoose";
+import connectDB from "./utils/db.js";
+import { User } from "./models/User.model.js";
 
 const app = express();
 const PORT = 3000;
@@ -9,59 +11,80 @@ const PORT = 3000;
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-app
-  .route("/api/users/:id")
-  .get((req, res) => {
-    console.log("user request", req.params.id);
-    const id = Number(req.params.id);
+connectDB();
 
-    const user = users.find((user) => user.id === id);
+app.post("/api/users", async (req, res) => {
+  const { first_name, last_name, email, gender, job_title } = req.body;
+  console.log("request hit with", email);
+  if (!first_name || !last_name | !email | !gender | !job_title) {
+    return res.json({ message: "All fields are required to create user" });
+  }
 
-    if (!user) {
-      return res.status(404).json({ message: "User not found" });
-    }
-
-    return res.json(user);
-  })
-  .post((req, res) => {
-    return res.json({ status: "pending" });
-    const id = req.params.id;
-  })
-  .patch((req, res) => {
-    return res.json({ status: "pending" });
-    const id = req.params.id;
-  })
-  .delete((req, res) => {
-    const id = Number(req.params.id);
-
-    const userIndex = users.findIndex((user) => user.id === id);
-
-    if (userIndex === -1) {
-      return res.status(404).json({ status: "user not found" });
-    }
-
-    users.splice(userIndex, 1);
-
-    fs.writeFile("./MOCK_DATA.json", JSON.stringify(users, null, 2), (err) => {
-      if (err) {
-        return res.status(500).json({ status: "error deleting user" });
-      }
-
-      return res.json({
-        status: "successfully user deleted",
-        userId: id,
-      });
-    });
+  //check for availablity of existing user
+  const existingUser = await User.findOne({ email });
+  if (existingUser) {
+    return res.json(
+      { message: "User is already existing with following detaiel" },
+      { status: 400 },
+    );
+  }
+  const newUser = await User.create({
+    firstName: first_name,
+    lastName: last_name,
+    email: email,
+    gender: gender,
+    jobTitle: job_title,
   });
-
-app.post("/api/users", (req, res) => {
-  console.log(req.body);
-  const userData = req.body;
-  users.push({ id: users.length + 1, ...userData });
-  fs.writeFile("./MOCK_DATA.json", JSON.stringify(users), (err, data) => {
-    return res.json({ status: "successful", userId: users.length });
-  });
+  console.log(newUser);
+  return res.json(
+    { message: "user is created successfully:", newUser },
+    { status: 200 },
+  );
 });
+
+//get
+app.get("/api/users", async (req, res) => {
+  try {
+    const allDBusers = await User.find({});
+
+    const html = `
+      <ul>
+        ${allDBusers
+          .map(
+            (user) => `
+          <li>
+            ${user.firstName} ${user.lastName} - ${user.email}
+          </li>
+        `,
+          )
+          .join("")}
+      </ul>
+    `;
+
+    res.send(html);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Server error");
+  }
+});
+
+//get user by id
+app.get("/api/users/:id", async (req, res) => {
+  const id = req.params.id;
+  if (!id) {
+    return res.json(
+      { message: "id is not available in params" },
+      { status: 404 },
+    );
+  }
+  const userwithId = await User.findById(id);
+
+  return res.json(
+    { message: "user find successfully", userwithId },
+    { status: 200 },
+  );
+});
+
 
 
 app.listen(PORT, () => {
